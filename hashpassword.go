@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"golang.org/x/crypto/bcrypt"
+	"os"
 )
 
 func HashPass(password string) (string, error) {
@@ -24,4 +25,8 @@ func main() {
 
 	match := CheckPassHash(password, hash)
 	fmt.Println("Match: ", match)
+
+	os.Create("hashpassword.txt")
+	os.WriteFile("hashpassword.txt", []byte(hash), 0644)
+
 }
